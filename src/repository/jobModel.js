@@ -5,10 +5,6 @@ const JobSchema = mongoose.Schema({
         type:String,
         required: true
     },
-    hrID:{
-        type:Number,
-        required: true
-    },
     title:{
         type:String,
         required: true
