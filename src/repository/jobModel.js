@@ -13,6 +13,10 @@ const JobSchema = mongoose.Schema({
         type:String,
         required: true
     },
+    stat:{
+        type:String,
+        default: 'active'
+    },
     requirements: {
         type: Array,
         required: false

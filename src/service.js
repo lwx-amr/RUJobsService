@@ -4,6 +4,9 @@ import helmet from "helmet";
 import RateLimit from "express-rate-limit";
 import config from "config";
 
+// loading Routes
+import jobsRoutes from "./api/jobRoutes";
+
 // load configurations
 const port = config.get("app.port");
 const db = config.get("database.url");
@@ -41,12 +44,10 @@ mongoose.connect(db,{
 });
 
 // Calling service routes
-//app.use(prefix,loginRoutes);
+app.use(prefix, jobsRoutes);
 
 // Running server
-const listen = app.listen(port, () => {
-    console.log(`Server is running on port ${port}`);
-});
+app.listen(port, () => console.log(`Server is running on port ${port}`));
 
 // Export port
 module.exports= app;
