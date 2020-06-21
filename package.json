@@ -9,7 +9,7 @@
     "prestart": "npm run build",
     "start": "node ./build/service.js",
     "prod": "node ./build/service.js",
-    "dev": "DEBUG=app,app:* nodemon --exec babel-node ./src/service.js"
+    "dev": " nodemon --exec babel-node ./src/service.js"
   },
   "repository": {
     "type": "git",
