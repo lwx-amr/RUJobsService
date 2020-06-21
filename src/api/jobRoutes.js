@@ -5,17 +5,17 @@ const router = express.Router();
 
 // Crud operations for job
 router.route("/jobs")
-    .post(addNewJob)
     .get(getJob)
+    .post(addNewJob)
     .put(updateJob)
     .delete(deleteJob);
 
 // Return all jobs for certain hr
-router.route("/jobs/:hrID")
+router.route("/jobs/hr/:id")
     .get(getAllHRJobs);
 
 // Return all jobs for certain WorkSpace
-router.route("/jobs/:wsID")
+router.route("/jobs/ws/:id")
     .get(getAllWSJobs);
 
 // Return jobs states with num for each one

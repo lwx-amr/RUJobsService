@@ -47,9 +47,7 @@ mongoose.connect(db,{
 app.use(prefix, jobsRoutes);
 
 // Running server
-const listen = app.listen(port, () => {
-    console.log(`Server is running on port ${port}`);
-});
+app.listen(port, () => console.log(`Server is running on port ${port}`));
 
 // Export port
 module.exports= app;

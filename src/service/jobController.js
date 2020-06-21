@@ -1,12 +1,7 @@
-import usersModel from "../repository/jobModel";
+import JobModel from "../repository/jobModel";
 
 // Display HR all jobs from recent to old
 const getAllHRJobs = () => {
-
-}
-
-// Get jobs states with number for each one
-const getJobStatesWithNum = () => {
 
 }
 
@@ -15,13 +10,36 @@ const getAllWSJobs = () => {
 
 }
 
-// Crud operations for job
-const addNewJob = () => {
-
+// Get jobs states with number for each one
+const getJobStatesWithNum = (req, res) => {
+    const states = {
+        'all': 0,
+        'active': 0,
+        'hold': 0,
+        'closed': 0
+    };
+    JobModel.find({})
+        .then((jobs) => {
+            states['all'] = jobs.length;
+            jobs.forEach(e => states[e.stat] = states[e.stat]+1);
+            res.json(states);
+        })
+        .catch((err) => res.status(400).json(err)); 
 }
 
-const getJob = () => {
+// Crud operations for job
+const addNewJob = (req, res) => {
+    const newJob = JobModel(req.body);
+    newJob.save()
+        .then((job) => res.json(job))
+        .catch((err) => res.status(400).json(err)); 
+}
 
+const getJob = (req, res) => {
+    const {id} = req.query;
+    JobModel.findById(id)
+        .then((job) => res.json(job))
+        .catch((err) => res.status(400).json(err));
 }
 
 const updateJob = () => {
