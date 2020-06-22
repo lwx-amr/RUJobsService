@@ -1,8 +1,10 @@
 import JobModel from "../repository/jobModel";
 
 // Display HR all jobs from recent to old
-const getAllHRJobs = () => {
-
+const getAllHRJobs = (req, res) => {
+    JobModel.find({ hrID: req.params.id }).sort({ created_date: -1 }) //sort based on recent created date
+        .then((results) => res.json(results))
+        .catch((err) => res.status(404).json(err))
 }
 
 // Display all jobs in workspace from recent to old	
@@ -57,4 +59,5 @@ const invalidRequest = (req, res) => {
 
 module.exports = { 
     getAllHRJobs, getJobStatesWithNum, getAllWSJobs,
-    addNewJob, getJob, updateJob, deleteJob, invalidRequest};
+    addNewJob, getJob, updateJob, deleteJob, invalidRequest
+};
