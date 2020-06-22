@@ -8,8 +8,10 @@ const getAllHRJobs = (req, res) => {
 }
 
 // Display all jobs in workspace from recent to old	
-const getAllWSJobs = () => {
-
+const getAllWSJobs = (req, res) => {
+    JobModel.find({ wsID: req.params.id }).sort({ created_date: -1 }) //sort based on recent created date
+        .then((results) => res.json(results))
+        .catch((err) => res.status(404).json(err))
 }
 
 // Get jobs states with number for each one
