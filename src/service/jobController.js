@@ -49,8 +49,10 @@ const updateJob = () => {
 
 }
 
-const deleteJob = () => {
-
+const deleteJob = (req, res) => {
+    JobModel.deleteOne({ _id: req.params.id })
+        .then((result) => res.json(result))
+        .catch((err) => res.status(404).json(err));
 }
 
 // Handling all not found requests
