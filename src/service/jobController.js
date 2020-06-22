@@ -38,8 +38,7 @@ const addNewJob = (req, res) => {
 }
 
 const getJob = (req, res) => {
-    const {id} = req.query;
-    JobModel.findById(id)
+    JobModel.findById(req.params.id)
         .then((job) => res.json(job))
         .catch((err) => res.status(400).json(err));
 }
