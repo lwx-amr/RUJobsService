@@ -6,7 +6,6 @@ const getAllHRJobs = (req, res) => {
         .then((results) => res.json(results))
         .catch((err) => res.status(404).json(err))
 }
-
 // Display all jobs in workspace from recent to old	
 const getAllWSJobs = (req, res) => {
     JobModel.find({ wsID: req.params.id }).sort({ created_date: -1 }) //sort based on recent created date
