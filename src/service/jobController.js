@@ -8,8 +8,10 @@ const getAllHRJobs = (req, res) => {
 }
 
 // Display all jobs in workspace from recent to old	
-const getAllWSJobs = () => {
-
+const getAllWSJobs = (req, res) => {
+    JobModel.find({ wsID: req.params.id }).sort({ created_date: -1 }) //sort based on recent created date
+        .then((results) => res.json(results))
+        .catch((err) => res.status(404).json(err))
 }
 
 // Get jobs states with number for each one
@@ -38,8 +40,7 @@ const addNewJob = (req, res) => {
 }
 
 const getJob = (req, res) => {
-    const {id} = req.query;
-    JobModel.findById(id)
+    JobModel.findById(req.params.id)
         .then((job) => res.json(job))
         .catch((err) => res.status(400).json(err));
 }
@@ -48,8 +49,10 @@ const updateJob = () => {
 
 }
 
-const deleteJob = () => {
-
+const deleteJob = (req, res) => {
+    JobModel.deleteOne({ _id: req.params.id })
+        .then((result) => res.json(result))
+        .catch((err) => res.status(404).json(err));
 }
 
 // Handling all not found requests

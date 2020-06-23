@@ -9,6 +9,10 @@ const JobSchema = mongoose.Schema({
         type: Number,
         required: true
     },
+    wsID: {
+        type: Number,
+        required: true
+    },
     title:{
         type:String,
         required: true
