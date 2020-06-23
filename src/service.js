@@ -28,8 +28,8 @@ app.use(function (req, res, next) {
 new RateLimit({
     windowMs: 15*60*1000,       // 15 min is the time of our cycle
     max: 100,                   // Max number of requests
-    delayMs: 0                  // Disable dalay bentween each request
-    // This mean each ip will be able to make only 100 request in each 15 min and there is no dealy between requests
+    delayMs: 0                  // Disable delay between each request
+    // This mean each ip will be able to make only 100 request in each 15 min and there is no delay between requests
 });
 
 // Express Parser setup
@@ -44,7 +44,7 @@ mongoose.connect(db,{
 });
 
 // Calling service routes
-app.use(prefix, jobsRoutes);
+app.use(`${prefix}/jobs`, jobsRoutes);
 
 // Running server
 app.listen(port, () => console.log(`Server is running on port ${port}`));
