@@ -4,21 +4,23 @@ import { getAllHRJobs, getJobStatesWithNum, getAllWSJobs, addNewJob, getJob, upd
 const router = express.Router();
 
 // Crud operations for job
-router.route("/jobs")
-    .post(addNewJob)
-    .get(getJobStatesWithNum);  // Return jobs states with num for each one
-
-router.route("/jobs/job/:id")
+router.route("/job/:id")
     .get(getJob)
     .put(updateJob)
     .delete(deleteJob);
+router.route("/")
+    .post(addNewJob)
+
+// Return jobs states with num for each one
+router.route("/states")
+    .get(getJobStatesWithNum); 
 
 // Return all jobs for certain hr
-router.route("/jobs/hr/:id")
+router.route("/hr/:id")
     .get(getAllHRJobs);
 
 // Return all jobs for certain WorkSpace
-router.route("/jobs/ws/:id")
+router.route("/ws/:id")
     .get(getAllWSJobs);
 
 //catch all other routes
