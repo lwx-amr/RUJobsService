@@ -13,6 +13,10 @@ const JobSchema = mongoose.Schema({
         type: Number,
         required: true
     },
+    numOfApplicants: {
+        type: Number,
+        required: true
+    },
     title:{
         type:String,
         required: true
