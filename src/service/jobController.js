@@ -58,6 +58,14 @@ const deleteJob = (req, res) => {
         .catch((err) => res.status(404).json(err));
 }
 
+const setNumOfApplicants = (req, res) => {
+    const {id, num} = req.params;
+    console.log(id, num);
+    JobModel.findByIdAndUpdate(id, {numOfApplicants: num})
+        .then(data => res.json(data))
+        .catch(err=> res.send(err));
+}
+
 // Handling all not found requests
 const invalidRequest = (req, res) => {
     res.send("<h1>PAGE NOT FOUND</h1>");
@@ -65,5 +73,6 @@ const invalidRequest = (req, res) => {
 
 module.exports = { 
     getAllHRJobs, getJobStatesWithNum, getAllWSJobs,
-    addNewJob, getJob, updateJob, deleteJob, invalidRequest
+    addNewJob, getJob, updateJob, deleteJob, invalidRequest,
+    setNumOfApplicants
 };

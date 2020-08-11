@@ -13,7 +13,7 @@ COPY build ./build
 COPY config ./config
 
 # Choose port for service
-EXPOSE 3002
+EXPOSE 3003
 
 # Commands to run app
 CMD ["npm","run", "prod"]

@@ -4,7 +4,7 @@ module.exports = {
     app: {
         name: "JobsService",
         baseUrl: `http://localhost:`,
-        port: process.env.PORT || 3004
+        port: process.env.PORT || 3003
     },
     client: {
         url: process.env.CLIENT || 'http://localhost:3000'
