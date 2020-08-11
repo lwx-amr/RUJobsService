@@ -8,15 +8,17 @@ router.route("/job/:id")
     .get(getJob)
     .put(updateJob)
     .delete(deleteJob);
+router.route("/job")
+    .post(updateJob);
 router.route("/")
     .post(addNewJob)
 
 // Return jobs states with num for each one
-router.route("/states")
+router.route("/states/:wsID")
     .get(getJobStatesWithNum); 
 
 // Return all jobs for certain hr
-router.route("/hr/:id")
+router.route("/hr/:id/:wsID")
     .get(getAllHRJobs);
 
 // Return all jobs for certain WorkSpace

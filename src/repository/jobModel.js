@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose, { Schema } from "mongoose";
 
 const JobSchema = mongoose.Schema({
     HRName:{
@@ -6,16 +6,16 @@ const JobSchema = mongoose.Schema({
         required: true
     },
     hrID: {
-        type: Number,
+        type: Schema.Types.ObjectId,
         required: true
     },
     wsID: {
-        type: Number,
+        type: Schema.Types.ObjectId,
         required: true
     },
     numOfApplicants: {
         type: Number,
-        required: true
+        default: 0
     },
     title:{
         type:String,
@@ -29,9 +29,13 @@ const JobSchema = mongoose.Schema({
         type:String,
         default: 'active'
     },
-    requirements: {
-        type: Array,
-        required: false
+    level:{
+        type:String,
+        default: 'junior'
+    },
+    skills: {
+        type: String,
+        required: true
     },
     created_date:{
         type:Date,

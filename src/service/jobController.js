@@ -2,7 +2,7 @@ import JobModel from "../repository/jobModel";
 
 // Display HR all jobs from recent to old
 const getAllHRJobs = (req, res) => {
-    JobModel.find({ hrID: req.params.id }).sort({ created_date: -1 }) //sort based on recent created date
+    JobModel.find({ hrID: req.params.id, wsID : req.params.wsID}).sort({ created_date: -1 }) //sort based on recent created date
         .then((results) => res.json(results))
         .catch((err) => res.status(404).json(err))
 }
@@ -22,7 +22,8 @@ const getJobStatesWithNum = (req, res) => {
         'hold': 0,
         'closed': 0
     };
-    JobModel.find({})
+    let {wsID} = req.params;
+    JobModel.find({wsID})
         .then((jobs) => {
             states['all'] = jobs.length;
             jobs.forEach(e => states[e.stat] = states[e.stat]+1);
@@ -45,8 +46,10 @@ const getJob = (req, res) => {
         .catch((err) => res.status(400).json(err));
 }
 
-const updateJob = () => {
-
+const updateJob = (req, res) => {
+    JobModel.findByIdAndUpdate(req.body._id, req.body)
+        .then((data) => res.json(data))
+        .catch((err) => res.status(400).json(err)); 
 }
 
 const deleteJob = (req, res) => {
